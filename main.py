@@ -25,3 +25,25 @@ import indicnlp
 
 from indicnlp.tokenize import indic_tokenize
 print(list(indic_tokenize.trivial_tokenize(s,lang='en')))
+
+#wordpiece tokenization
+from transformers import BertTokenizer
+tokenizer=BertTokenizer.from_pretrained('bert-base-uncased')
+def simple_tokenize(text):
+    print(f"original text:{text}")
+
+
+    #convert word to wordpiece tokens
+    tokens=tokenizer.tokenize(s)
+    print(f"wordpiece tokens{tokens}")
+
+    #convert tokens to numerical IDs
+    token_IDs=tokenizer.convert_tokens_to_ids(tokens)
+    print(f"token_ids{token_IDs}")
+
+    words=text.split
+    print("\n word breakdown")
+    for word in words:
+        word_tokens=tokenizer.tokenize(word)
+        print("f: {word} -> {word_tokens}")
+simple_tokenize(s)
